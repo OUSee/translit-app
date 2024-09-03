@@ -8,7 +8,9 @@
         "dev": "vite",
         "build": "tsc -b && vite build",
         "lint": "eslint .",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "predeploy": "npm run build && npm run add-domain",
+        "deploy": "gh-pages -d dist"
     },
     "dependencies": {
         "cyrillic-to-translit-js": "^3.2.1",
