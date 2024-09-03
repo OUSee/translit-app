@@ -108,7 +108,11 @@ export const TableComponent = ({ words, setWords }: ITableComponent) => {
             {screen.width > 730 && (
                 <ul id="table" className={styles.container}>
                     <li className={styles.item}>
-                        <div className={styles.lightContainer}>
+                        <div
+                            className={
+                                styles.lightContainer + " " + styles.showTooltip
+                            }
+                        >
                             <span className={styles.iterator}>1</span>
                             <span className={styles.originalText}>
                                 Привет 👋🏻 Мир Тук-тук Нео Калькул…
@@ -117,7 +121,11 @@ export const TableComponent = ({ words, setWords }: ITableComponent) => {
                                 Привет 👋🏻 Мир Тук-тук Нео Калькул…
                             </div>
                         </div>
-                        <div className={styles.darkContainer}>
+                        <div
+                            className={
+                                styles.darkContainer + " " + styles.showTooltip
+                            }
+                        >
                             <span className={styles.convertedText}>
                                 Privet Mir Tuk-tuk Neo Kalkuly…
                             </span>
