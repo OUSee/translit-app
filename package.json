@@ -9,6 +9,7 @@
         "build": "tsc -b && vite build",
         "lint": "eslint .",
         "preview": "vite preview",
+        "add-domain": "echo \"translit-app\" > dist/CNAME",
         "predeploy": "npm run build && npm run add-domain",
         "deploy": "gh-pages -d dist"
     },
