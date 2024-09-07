@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Word } from "../../types";
 import { CrossIcon } from "../icons/crossIcon";
 import styles from "./styles.module.css";
@@ -9,6 +9,8 @@ interface ITableComponent {
 }
 
 export const TableComponent = ({ words, setWords }: ITableComponent) => {
+    const [isMobile, setIsMobile] = useState(false);
+
     const handleDelItem = (index: number) => {
         setWords(words.filter((_word, i) => i !== index));
     };
@@ -99,13 +101,28 @@ export const TableComponent = ({ words, setWords }: ITableComponent) => {
         return table;
     };
 
+    const tryMobile = () => {
+        const mobile = window.matchMedia("(max-width: 730px)");
+        if (mobile.matches) {
+            setIsMobile(true);
+        }
+        else {
+            setIsMobile(false);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("resize", tryMobile);
+        return () => window.removeEventListener("resize", tryMobile);
+    }, [tryMobile]);
+
     useEffect(() => {
         console.log("updated");
     });
 
     return (
         <>
-            {screen.width > 730 && (
+            {!isMobile && (
                 <ul id="table" className={styles.container}>
                     <li className={styles.item}>
                         <div
@@ -141,7 +158,7 @@ export const TableComponent = ({ words, setWords }: ITableComponent) => {
                     {drawTable()}
                 </ul>
             )}
-            {screen.width < 730 && (
+            {isMobile && (
                 <div className={styles.mobileVer}>
                     <ul className={styles.mobileTableOriginal}>
                         <li className={styles.item}>
